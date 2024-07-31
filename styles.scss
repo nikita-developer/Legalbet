@@ -1,0 +1,378 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Proxima";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/proximanova_regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Proxima";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./fonts/proximanova_semibold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Futura";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./fonts/futurapt_medium.woff") format("woff");
+}
+
+body {
+  background-color: #d4d5d6;
+  padding: 30px;
+  font-family: 'Proxima', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #000;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 24px 24px 16px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    column-gap: 20px;
+  }
+
+  &__body {
+    p {
+      color: rgba(0, 0, 0, 0.6);
+      line-height: 24px;
+    }
+  }
+
+  &__footer {
+    margin-left: -24px;
+    margin-right: -24px;
+
+    @media (max-width: 744px) {
+      margin-left: -16px;
+      margin-right: -16px;
+    }
+  }
+
+  &__statistics {
+    @media (max-width: 744px) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 744px) {
+    padding: 16px;
+  }
+}
+
+.card-user {
+  display: flex;
+
+  &__media {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-right: 12px;
+    overflow: hidden;
+  }
+
+  &__name {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 2px;
+  }
+
+  &__active {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.4);
+
+    @media (max-width: 744px) {
+      display: none;
+    }
+  }
+
+  &__statistics {
+    display: none;
+
+    @media (max-width: 744px) {
+      display: block;
+    }
+  }
+}
+
+.statistics {
+  display: none;
+
+  &__item {
+    font-size: 14px;
+    line-height: 16px;
+
+    &--success {
+      color: rgba(98, 180, 53, 1);
+    }
+
+    &--error {
+      color: rgba(246, 71, 71, 1);
+    }
+    
+    &--info {
+      color: rgba(161, 170, 178, 1);
+    }
+  }
+
+  span {
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.2);
+    margin-right: 4px;
+    margin-left: 4px;
+  }
+
+  @media (max-width: 744px) {
+    display: flex;
+  }
+}
+
+.card-statistics-mobile {
+  display: none;
+  flex-shrink: 0;
+
+  &__item {
+    font-size: 14px;
+    line-height: 16px;
+
+    &--success {
+      color: rgba(98, 180, 53, 1);
+    }
+
+    &--stable {
+      color: rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  @media (max-width: 744px) {
+    display: block;
+  }
+}
+
+.card-table {
+  display: flex;
+  column-gap: 12px;
+
+  &__col {
+    min-width: 64px;
+  }
+
+  &__head {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.8);
+
+    &--success {
+      color: rgba(98, 180, 53, 1);
+    }
+
+    &--error {
+      color: rgba(246, 71, 71, 1);
+    }
+
+    &--stable {
+      color: rgba(0, 0, 0, 0.4);
+    }
+
+    &--info {
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+
+  &__footer {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.8);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+    &--success {
+      color: rgba(98, 180, 53, 1);
+    }
+
+    &--error {
+      color: rgba(246, 71, 71, 1);
+    }
+
+    &--stable {
+      color: rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
+.card-body {
+  position: relative;
+  padding-bottom: 24px;
+
+  &__arrow {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    margin-left: -20px;
+  }
+
+  &__info {
+    position: relative;
+    max-height: 1000px;
+    transition: max-height .3s;
+
+    &::before {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 27px;
+      width: 100%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 16.67%, #FFFFFF 100%);
+      opacity: 0;
+      transition: opacity .3s;
+      content: '';
+    }
+  }
+
+  &--text-hide {
+    .card-body__info {
+      max-height: 120px;
+      overflow: hidden;
+
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.card-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+
+  &.rotate {
+    transform: rotate(180deg);
+  }
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  background-color: rgba(240, 241, 242, 0.4);
+  border-left: 2px solid rgba(52, 152, 219, 1);
+
+  &__info {
+    span {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 14px;
+      color: rgba(0, 0, 0, 0.4);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 20px;
+      color: rgba(0, 0, 0, 0.8);
+
+      @media (max-width: 744px) {
+        font-size: 16px;
+        line-height: 18px;
+      }
+    }
+
+    @media (max-width: 744px) {
+      width: calc(100% - 130px);
+    }
+  }
+
+  &__kof {
+    margin-left: auto;
+
+    @media (max-width: 744px) {
+      width: 121px;
+    }
+  }
+
+  &__button {
+    margin-left: 16px;
+
+    @media (max-width: 744px) {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 744px) {
+    flex-wrap: wrap;
+    align-items: flex-end;
+    row-gap: 16px;
+  }
+}
+
+.card-kof {
+  display: flex;
+  align-items: center;
+
+  &__media {
+    margin-right: 12px;
+  }
+
+  &__info {
+    p {
+      font-size: 12px;
+      line-height: 14px;
+      color: rgba(51, 51, 51, 1);
+    }
+
+    span {
+      font-family: 'Futura', sans-serif;
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 500;
+    }
+  }
+}
+
+.btn {
+  font-size: 14px;
+  padding: 12px 17.5px;
+  color: #fff;
+  background: rgba(52, 152, 219, 1);
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: .9;
+  }
+}
